@@ -8,9 +8,9 @@ const renderTooltip = ({ active, label, payload }) => {
   const { name } = active && payload[0];
   return (
     active && (
-      <div className="custom_tooltip">
-        <p className="custom_tooltip_label">{label}</p>
-        <p className="custom_tooltip_name">
+      <div className="custom-tooltip">
+        <p className="custom-tooltip_label">{label}</p>
+        <p className="custom-tooltip_name">
           {`${name} : `}
           <span className="custom_tooltip_value">{payload[0].payload[name]}</span>
         </p>
@@ -35,7 +35,7 @@ const Histogram = ({ resultSet, xAxisKey, barKey }) => {
       </BarChart>
     </ResponsiveContainer>
   ) : (
-    <h1>No data available for this form!</h1>
+    <h3>No data available for this form!</h3>
   );
 };
 

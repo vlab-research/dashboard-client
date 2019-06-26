@@ -1,18 +1,18 @@
-.selector-container {
+.selector_container {
   display: flex;
   align-items: center;
 }
 
-.selector-title {
+.selector_title {
   color: rgb(181, 181, 181);
   font-size: 0.9rem;
 }
 
-.selector-container .ant-select-selection {
+.selector_container .ant-select-selection {
   border: none;
   height: 100%;
 }
 
-.selector-container .ant-select-selection:focus {
+.selector_container .ant-select-selection:focus {
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0);
 }

@@ -33,27 +33,6 @@ const Surveys = props => {
       <Content style={{ padding: '30px' }}>
         <SurveyScreen userid={surveys[selected].userid} formid={surveys[selected].formid} />
       </Content>
-      {/* <div>
-        <Survey.Provider value={{ setSurveys }}>
-          <TypeformCreate {...props} />
-        </Survey.Provider>
-        {surveys.length ? (
-          <>
-            <Select
-              defaultValue={selected}
-              onSelect={value => setSelected(value)}
-              dropdownRender={menu => <div>{menu}</div>}
-            >
-              {surveys.map((survey, id) => (
-                <Select.Option key={survey.id} value={id}>
-                  {survey.title}
-                </Select.Option>
-              ))}
-            </Select>
-            <SurveyScreen userid={surveys[selected].userid} formid={surveys[selected].formid} />
-          </>
-        ) : null}
-      </div> */}
     </Layout>
   ) : null;
 };

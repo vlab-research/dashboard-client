@@ -29,11 +29,13 @@ const DurationHistogram = ({ formid, cubejs }) => {
   const [activeInterval, setActiveInterval] = useState('1 hour');
 
   return (
-    <div className="chart-container-b">
-      <div className="info-container-b">
-        <h3>Duration per user</h3>
-        <div className="selector-container">
-          <div className="selector-title">Interval</div>
+    <div className="chart_container--b">
+      <div className="info_container--b">
+        <h3 className="chart_title">
+          <abbr title="Duration per user"> Duration per user </abbr>
+        </h3>
+        <div className="selector_container">
+          <div className="selector_title">Interval</div>
           <IntervalSelector
             stepIntervals={stepIntervals}
             activeInterval={activeInterval}
@@ -41,7 +43,7 @@ const DurationHistogram = ({ formid, cubejs }) => {
           />
         </div>
       </div>
-      <div className="histogram-container">
+      <div className="histogram_container">
         <QueryRenderer
           query={{
             measures: ['Responses.startTime', 'Responses.endTime'],

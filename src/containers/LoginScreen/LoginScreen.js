@@ -7,12 +7,19 @@ import './LoginScreen.css';
 const LoginScreen = ({ auth }) => {
   const isAuthenticated = auth.isAuthenticated();
   return (
-    <div className="login-container">
-      <Card className="card-container">
-        <p style={{ fontSize: '120px' }}>VL</p>
-        <Button onClick={isAuthenticated ? auth.logout : auth.login} type="normal" size="large">
-          {isAuthenticated ? 'Logout' : 'Login'}
-        </Button>
+    <div className="login_container">
+      <Card>
+        <div className="card_container">
+          <h1 className="login_title">Virtual Lab Dashboard</h1>
+          <Button
+            className="login_button"
+            onClick={isAuthenticated ? auth.logout : auth.login}
+            type="primary"
+            size="large"
+          >
+            {isAuthenticated ? 'Logout' : 'Login'}
+          </Button>
+        </div>
       </Card>
     </div>
   );

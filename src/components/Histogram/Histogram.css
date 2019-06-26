@@ -1,4 +1,4 @@
-.custom_tooltip {
+.custom-tooltip {
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -9,16 +9,16 @@
   padding: 10px;
 }
 
-.custom_tooltip_value {
+.custom-tooltip_value {
   color: #82ca9d;
   font-weight: 600;
 }
 
-.custom_tooltip_name {
+.custom-tooltip_name {
   margin: 0 15px;
 }
 
-.custom_tooltip_label {
+.custom-tooltip_label {
   font-size: 0.7rem;
   margin: 0 15px;
 }
