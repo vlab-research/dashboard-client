@@ -1,19 +1,23 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Button } from 'antd';
+
 import { Typeform } from '../../services';
-import { TypeformBtn, Container } from './style';
+import './style.css';
 import TypeformCreateForm from './TypeformCreateForm';
 
 const { handleAuthorization } = Typeform;
 
 const TypeformCreate = ({ match }) => {
   return (
-    <Container>
-      <TypeformBtn to={`${match.path}/create`}>CREATE</TypeformBtn>
+    <div className="container">
+      <Button className="create_button" type="primary" size="large">
+        <Link to={`${match.path}/create`}>New Survey</Link>
+      </Button>
       <Route path={`${match.path}/auth`} render={props => <TypeformCreateAuth {...props} />} />
       <Route path={`${match.path}/create`} render={props => <TypeformCreateForm {...props} />} />
-    </Container>
+    </div>
   );
 };
 

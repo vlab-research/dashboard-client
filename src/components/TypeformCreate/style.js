@@ -93,11 +93,12 @@ export const ModalHeader = styled.div`
 
 export const ModalTitle = styled.h1`
   font-weight: 800;
-  padding: 10px 30px;
+  padding: 10px;
   margin-bottom: 0px;
 `;
 
 export const List = styled.div`
+  max-height: 50vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -105,15 +106,16 @@ export const List = styled.div`
 `;
 
 export const ListItem = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   cursor: pointer;
   border-top: 1px solid #eee;
-  padding: 20px 30px;
+  padding: 10px;
   &:hover {
-    background: ${({ active }) => (active ? '#529e72' : '#eee')};
+    background: ${({ active }) => (active ? '#1890ff' : '#eee')};
+    color: ${({ active }) => active && 'white'};
   }
-  background: ${({ active }) => active && '#9edcb8'};
-  color: ${({ active }) => active && 'white'};
+  background: ${({ active }) => active && '#e6f7ff'};
+  color: ${({ active }) => active && '#1890ff'};
   display: flex;
   justify-content: space-between;
 `;
@@ -142,8 +144,7 @@ export const ModalFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 2px solid #eee;
-  padding: 10px 20px;
+  padding: 10px;
 `;
 
 export const ActionsBtns = styled.div`
@@ -166,6 +167,7 @@ export const SelectedInfo = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
 `;
 
 export const primaryColor = styled(SelectedInfo)`
@@ -173,7 +175,7 @@ export const primaryColor = styled(SelectedInfo)`
 `;
 
 export const TitleInput = styled.input`
-  margin: 40px 40px;
+  margin: 20px 0;
   padding: 10px 10px;
   font-size: 1.2rem;
   font-weight: 800;
