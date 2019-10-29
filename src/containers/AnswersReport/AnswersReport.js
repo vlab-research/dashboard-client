@@ -7,7 +7,6 @@ import { computeHistogramData } from './chartUtil';
 import './AnswersReport.css';
 
 const renderHistogram = (Component, interval) => ({ resultSet, error }) => {
-
   if (error) console.error(error); // eslint-disable-line no-console
   return (
     (resultSet && (
@@ -22,19 +21,19 @@ const renderHistogram = (Component, interval) => ({ resultSet, error }) => {
 
 const AnswersReport = ({ formid, cubejs }) => {
   const stepIntervals = {
-    '2': 2,
-    '4': 4,
-    '8': 8,
+    2: 2,
+    4: 4,
+    8: 8,
   };
 
   const [activeInterval, setActiveInterval] = useState('4');
 
   return (
-    <div className="chart-container">
-      <div className="info-container">
+    <div className="chart_container">
+      <div className="info_container">
         <h3>Answers</h3>
-        <div className="selector-container">
-          <div className="selector-title">Interval</div>
+        <div className="selector_container">
+          <div className="selector_title">Interval</div>
           <IntervalSelector
             stepIntervals={stepIntervals}
             activeInterval={activeInterval}
@@ -42,7 +41,7 @@ const AnswersReport = ({ formid, cubejs }) => {
           />
         </div>
       </div>
-      <div className="histogram-container">
+      <div className="histogram_container">
         <QueryRenderer
           query={{
             measures: ['Responses.count'],

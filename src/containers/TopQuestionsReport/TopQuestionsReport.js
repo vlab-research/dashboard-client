@@ -9,7 +9,7 @@ import './TopQuestionsReport.css';
 const ChartBox = ({ resultSet }) => {
   const intervals = getIntervals(resultSet);
   const stepIntervals = {};
-  intervals.forEach(interval => {
+  intervals.forEach((interval) => {
     stepIntervals[interval] = interval;
   });
 
@@ -18,11 +18,11 @@ const ChartBox = ({ resultSet }) => {
   );
 
   return (
-    <div className="chart-container">
-      <div className="info-container">
+    <div className="chart_container">
+      <div className="info_container">
         <h3>{`Top ${activeInterval} Questions`}</h3>
-        <div className="selector-container">
-          <div className="selector-title">nº questions</div>
+        <div className="selector_container">
+          <div className="selector_title">nº questions</div>
           <IntervalSelector
             stepIntervals={stepIntervals}
             activeInterval={activeInterval}
@@ -30,7 +30,7 @@ const ChartBox = ({ resultSet }) => {
           />
         </div>
       </div>
-      <div className="histogram-container">
+      <div className="histogram_container">
         <HorizontalChart
           xAxisKey="question"
           barKey="answers"
@@ -47,32 +47,30 @@ const renderChart = Component => ({ resultSet, error }) => {
   return (resultSet && <Component resultSet={resultSet} />) || <Spinner />;
 };
 
-const TopQuestionsChart = ({ formid, cubejs }) => {
-  return (
-    <>
-      <QueryRenderer
-        query={{
-          dimensions: ['Responses.questionId'],
-          timeDimensions: [
-            {
-              dimension: 'Responses.timestamp',
-            },
-          ],
-          filters: [
-            {
-              dimension: 'Responses.formid',
-              operator: 'equals',
-              values: [formid],
-            },
-          ],
-          measures: ['Responses.count'],
-        }}
-        cubejsApi={cubejs}
-        render={renderChart(ChartBox, null)}
-      />
-    </>
-  );
-};
+const TopQuestionsChart = ({ formid, cubejs }) => (
+  <>
+    <QueryRenderer
+      query={{
+        dimensions: ['Responses.questionId'],
+        timeDimensions: [
+          {
+            dimension: 'Responses.timestamp',
+          },
+        ],
+        filters: [
+          {
+            dimension: 'Responses.formid',
+            operator: 'equals',
+            values: [formid],
+          },
+        ],
+        measures: ['Responses.count'],
+      }}
+      cubejsApi={cubejs}
+      render={renderChart(ChartBox, null)}
+    />
+  </>
+);
 
 ChartBox.propTypes = {
   resultSet: PropTypes.objectOf(PropTypes.object).isRequired,

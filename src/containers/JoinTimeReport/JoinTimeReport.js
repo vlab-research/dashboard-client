@@ -28,11 +28,11 @@ const JoinTimeReport = ({ formid, cubejs }) => {
   const [activeInterval, setActiveInterval] = useState('days');
 
   return (
-    <div className="chart-container">
-      <div className="info-container">
-        <h3 className="chart-title">Users joining time</h3>
-        <div className="selector-container">
-          <div className="selector-title">Interval</div>
+    <div className="chart_container">
+      <div className="info_container">
+        <h3 className="chart_title">Users joining time</h3>
+        <div className="selector_container">
+          <div className="selector_title">Interval</div>
           <IntervalSelector
             stepIntervals={stepIntervals}
             activeInterval={activeInterval}
@@ -40,7 +40,7 @@ const JoinTimeReport = ({ formid, cubejs }) => {
           />
         </div>
       </div>
-      <div className="histogram-container">
+      <div className="histogram_container">
         <QueryRenderer
           query={{
             measures: ['Responses.startTime'],
