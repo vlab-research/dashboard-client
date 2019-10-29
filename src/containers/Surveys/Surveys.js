@@ -9,13 +9,13 @@ const { Content, Sider } = Layout;
 
 export const Survey = React.createContext(null);
 
-const Surveys = props => {
+const Surveys = (props) => {
   const [surveys, setSurveys] = Hook.useMountFetch({ path: '/surveys' }, []);
   const [selected, setSelected] = useState('0');
 
-  return surveys.length ? (
+  return (
     <Layout style={{ height: '100%' }}>
-      <Sider style={{ background: '#fff' }}>
+      <Sider width="300" style={{ background: '#fff' }}>
         <Survey.Provider value={{ setSurveys }}>
           <TypeformCreate {...props} />
         </Survey.Provider>
@@ -25,16 +25,24 @@ const Surveys = props => {
           onClick={e => setSelected(e.key)}
           style={{ borderRight: 0 }}
         >
-          {surveys.map((survey, id) => (
-            <Menu.Item key={id}>{survey.title}</Menu.Item>
+          {surveys && surveys.map((survey, id) => (
+            <Menu.Item key={id}>
+              {survey.shortcode}
+              {'-'}
+              {survey.title}
+            </Menu.Item>
           ))}
         </Menu>
       </Sider>
       <Content style={{ padding: '30px' }}>
-        <SurveyScreen userid={surveys[selected].userid} formid={surveys[selected].formid} />
+        {
+          surveys && surveys[selected]
+            ? <SurveyScreen userid={surveys[selected].userid} formid={surveys[selected].formid} />
+            : 'No surveys yet'
+        }
       </Content>
     </Layout>
-  ) : null;
+  );
 };
 
 export default Surveys;

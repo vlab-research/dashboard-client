@@ -4,14 +4,15 @@ import { QueryRenderer } from '@cubejs-client/react';
 
 import { Spinner, Histogram, IntervalSelector } from '../../components';
 import { computeHistogramData } from './chartUtil';
-import './DurationReport.css';
+import './AnswersReport.css';
 
 const renderHistogram = (Component, interval) => ({ resultSet, error }) => {
+
   if (error) console.error(error); // eslint-disable-line no-console
   return (
     (resultSet && (
       <Component
-        resultSet={computeHistogramData(resultSet, interval)}
+        resultSet={computeHistogramData(resultSet, interval, 'Responses.count')}
         barKey="Users"
         xAxisKey="interval"
       />
@@ -19,23 +20,21 @@ const renderHistogram = (Component, interval) => ({ resultSet, error }) => {
   );
 };
 
-const DurationHistogram = ({ formid, cubejs }) => {
+const AnswersReport = ({ formid, cubejs }) => {
   const stepIntervals = {
-    '30 mins': 0.5,
-    '1 hour': 1,
-    '3 hours': 3,
+    '2': 2,
+    '4': 4,
+    '8': 8,
   };
 
-  const [activeInterval, setActiveInterval] = useState('3 hours');
+  const [activeInterval, setActiveInterval] = useState('4');
 
   return (
-    <div className="chart_container--b">
-      <div className="info_container--b">
-        <h3 className="chart_title">
-          <abbr title="Duration per user"> Duration per user </abbr>
-        </h3>
-        <div className="selector_container">
-          <div className="selector_title">Interval</div>
+    <div className="chart-container">
+      <div className="info-container">
+        <h3>Answers</h3>
+        <div className="selector-container">
+          <div className="selector-title">Interval</div>
           <IntervalSelector
             stepIntervals={stepIntervals}
             activeInterval={activeInterval}
@@ -43,10 +42,10 @@ const DurationHistogram = ({ formid, cubejs }) => {
           />
         </div>
       </div>
-      <div className="histogram_container">
+      <div className="histogram-container">
         <QueryRenderer
           query={{
-            measures: ['Responses.startTime', 'Responses.endTime'],
+            measures: ['Responses.count'],
             dimensions: ['Responses.userid'],
             filters: [
               {
@@ -64,9 +63,9 @@ const DurationHistogram = ({ formid, cubejs }) => {
   );
 };
 
-DurationHistogram.propTypes = {
+AnswersReport.propTypes = {
   formid: PropTypes.string.isRequired,
   cubejs: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default DurationHistogram;
+export default AnswersReport;

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { QueryRenderer } from '@cubejs-client/react';
 
-import { Spinner, Histogram, IntervalSelector } from '../../components';
+import { Spinner, LineChart, IntervalSelector } from '../../components';
 import { computeHistogramData } from './chartUtil';
-import './DurationReport.css';
+import './JoinTimeReport.css';
 
 const renderHistogram = (Component, interval) => ({ resultSet, error }) => {
   if (error) console.error(error); // eslint-disable-line no-console
@@ -12,30 +12,27 @@ const renderHistogram = (Component, interval) => ({ resultSet, error }) => {
     (resultSet && (
       <Component
         resultSet={computeHistogramData(resultSet, interval)}
-        barKey="Users"
-        xAxisKey="interval"
+        barKey="users"
+        xAxisKey="date"
       />
     )) || <Spinner />
   );
 };
 
-const DurationHistogram = ({ formid, cubejs }) => {
+const JoinTimeReport = ({ formid, cubejs }) => {
   const stepIntervals = {
-    '30 mins': 0.5,
-    '1 hour': 1,
-    '3 hours': 3,
+    days: 0,
+    months: 1,
   };
 
-  const [activeInterval, setActiveInterval] = useState('3 hours');
+  const [activeInterval, setActiveInterval] = useState('days');
 
   return (
-    <div className="chart_container--b">
-      <div className="info_container--b">
-        <h3 className="chart_title">
-          <abbr title="Duration per user"> Duration per user </abbr>
-        </h3>
-        <div className="selector_container">
-          <div className="selector_title">Interval</div>
+    <div className="chart-container">
+      <div className="info-container">
+        <h3 className="chart-title">Users joining time</h3>
+        <div className="selector-container">
+          <div className="selector-title">Interval</div>
           <IntervalSelector
             stepIntervals={stepIntervals}
             activeInterval={activeInterval}
@@ -43,10 +40,15 @@ const DurationHistogram = ({ formid, cubejs }) => {
           />
         </div>
       </div>
-      <div className="histogram_container">
+      <div className="histogram-container">
         <QueryRenderer
           query={{
-            measures: ['Responses.startTime', 'Responses.endTime'],
+            measures: ['Responses.startTime'],
+            timeDimensions: [
+              {
+                dimension: 'Responses.timestamp',
+              },
+            ],
             dimensions: ['Responses.userid'],
             filters: [
               {
@@ -57,16 +59,16 @@ const DurationHistogram = ({ formid, cubejs }) => {
             ],
           }}
           cubejsApi={cubejs}
-          render={renderHistogram(Histogram, stepIntervals[activeInterval])}
+          render={renderHistogram(LineChart, stepIntervals[activeInterval])}
         />
       </div>
     </div>
   );
 };
 
-DurationHistogram.propTypes = {
+JoinTimeReport.propTypes = {
   formid: PropTypes.string.isRequired,
   cubejs: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default DurationHistogram;
+export default JoinTimeReport;
