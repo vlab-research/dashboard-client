@@ -1,0 +1,42 @@
+.t-btn-content {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.t-btn-content button{
+    font-weight: bold;
+    padding: 0 35px !important;
+}
+
+
+.t-modal .ant-modal-content {
+    border-radius: 8px;
+}
+
+.t-modal .ant-modal-header {
+    text-align: center;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.t-modal .ant-modal-body {
+    padding: 15px 20px;
+}
+
+.t-modal .ant-modal-footer button {
+    padding: 0 30px;
+}
+
+.t-form .ant-form-item-label {
+    padding: 0 0 3px;
+}
+.t-form .ant-form-item {
+    margin-bottom: 10px;
+}
+
+.t-form input {
+    padding: 10px;
+    border-color: #d2cece;
+    border-radius: 4px;
+}
+
